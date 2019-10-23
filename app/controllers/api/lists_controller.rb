@@ -3,7 +3,7 @@ module Api
   class ListsController < ApplicationController
     def index
       @lists = List.all
-      render json: @lists
+      render json: @lists.to_json(include: :movies)
     end
 
     def create

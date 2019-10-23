@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_182536) do
     t.string "poster"
     t.string "genre"
     t.integer "rating"
+    t.string "imdb_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
