@@ -18,19 +18,28 @@ module Api
     end
 
     def update
+
+      #unsafe
+      puts params[:name]
       @list = List.find(params[:id])
       if @list.update(list_params)
-        @list.movies = []
-        if params.has_key?(:movies) 
-          params[:movies].each do |movie|
-              @movie = Movie.find_by(imdb_id: movie[:imdb_id])
+          @list.movies = []
+            params[:movies].each do |m|
+                
+              @movie = Movie.find_by(imdb_id: m[:imdb_id])
+              puts 'found movie'
+              puts @movie
+              puts 'done found movie'
               if @movie.nil?
-                movie.permit!
-                @movie = Movie.new(movie)
+                puts 'movie is nil'
+                puts m
+                # puts m.permit!
+                @movie = Movie.new(m)
+                puts @movie
+                puts '^movie created'
               end
               @list.movies << @movie
           end
-        end
         render json: @list.to_json(include: :movies)
       else
         render json: @list.errors, status: :unprocessable_entity
@@ -40,8 +49,11 @@ module Api
     private
 
     def list_params
-      params.require(:list).permit(:name, movies: [])
+      params.require(:list).permit(:name);
+     # params.permit(:id, :name, { movies: [:id, :title, :year, :poster, :genre, :rating, :imdb_id]})
+      # params.require(:list).permit(:id, :name, movies: [:id, :title, :year, :poster, :genre, :rating, :imdb_id] )
     end
+
 
   end
 
