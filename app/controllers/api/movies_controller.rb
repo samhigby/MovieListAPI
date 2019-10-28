@@ -69,14 +69,6 @@ module Api
       params.require(:movie).permit(:id, :title, :year, :imdb_id, :poster, :genre, :rating)
     end
 
-    def save_render_movie(movie)
-      if movie.save
-        render json: movie.to_json
-      else
-        render json: movie.errors
-      end
-    end
-
   end
 
 
