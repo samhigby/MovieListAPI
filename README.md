@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Install ruby-2.6.0
+- Run `bundle install`
+- Setup the database by running:
+    - `rake db:setup`
+    - `rake db:migrate`
+- Start the server by running:
+    - `rails s`
+- Navigate to `http://localhost:3000`
