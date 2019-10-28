@@ -19,7 +19,6 @@ module Api
       else
         @movie = Movie.create(movie_params)
         render json: @movie
-        # save_render_movie(@movie)
       end
     end
 
@@ -60,7 +59,7 @@ module Api
       @list = List.find(params[:list_id])
       @list.movies.delete(@movie)
 
-      render json: @list.to_json(include: :movies)
+      render json: @movie
 
     end
 
